@@ -22,12 +22,20 @@ software.
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "driver/gpio.h"
+#include "driver/adc.h"
+#include "esp_adc_cal.h"
 #include "sdkconfig.h"
 
 // Application includes
 #include "main.h"
 
 const char *TAG = "main.c";
+
+void audiosom32_keys_init (void)
+{
+    adc1_config_width(ADC_WIDTH_BIT_12);
+    adc1_config_channel_atten(ADC_CHANNEL_0, ADC_ATTEN_11db);
+}
 
 void app_main()
 {
